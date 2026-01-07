@@ -39,4 +39,6 @@
 defineProps({
   product: Object
 })
+
+const emits = defineEmits(['delete-product'])
 </script>
