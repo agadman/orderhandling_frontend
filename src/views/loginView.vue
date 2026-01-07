@@ -44,13 +44,37 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
-    handleLogin() {
-      // Logga in (går direkt till dashboard nu)
-      this.$router.push('/dashboard')
+    async handleLogin() {
+      this.error = ''
+
+      try {
+        const res = await fetch('http://localhost:3000/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include', 
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password
+          })
+        })
+
+        const data = await res.json().catch(() => ({}))
+
+        if (!res.ok) {
+          this.error = data.message || 'Login failed'
+          return
+        }
+
+        this.$router.push('/dashboard')
+      } catch (err) {
+        this.error = 'Could not reach server'
+        console.error(err)
+      }
     }
   }
 }
