@@ -1,8 +1,11 @@
 <template>
   <div>
-    <Header />
+    <Header :user="currentUser" />
     <div style="display: flex;">
-      <Sidebar @change-view="currentView = $event" />
+      <Sidebar 
+        :activeView="currentView"
+        @change-view="currentView = $event" 
+      />
       <MainContent :view="currentView" />
     </div>
   </div>
@@ -17,8 +20,21 @@
         components: { Header, Sidebar, MainContent },
         data() {
             return {
-            currentView: 'products' // default view
+            currentView: 'products',
+            currentUser: null
             }
-        }
+        },
+        async mounted() {
+      try {
+        const res = await fetch('http://localhost:3000/auth/me', {
+          credentials: 'include'
+        })
+        if (!res.ok) return
+        const data = await res.json()
+        this.currentUser = data.user
+      } catch (err) {
+        console.log('Auth error:', err)
+      }
+    }
     }
 </script>
