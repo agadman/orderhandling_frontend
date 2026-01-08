@@ -18,9 +18,11 @@
       <span
         :class="[
           'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium',
-          product.inStock > 5
-            ? 'bg-green-100 text-green-700'
-            : 'bg-red-100 text-red-700'
+          product.inStock === 0
+            ? 'bg-red-100 text-red-700'
+            : product.inStock <= 10
+              ? 'bg-yellow-100 text-yellow-800'
+              : 'bg-green-100 text-green-700'
         ]"
       >
         {{ product.inStock }}

@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md">
+  <div class="min-h-screen bg-gray-50 flex items-start sm:items-center justify-center p-4 pt-10 sm:pt-4">
+    <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-md">
       <h1 class="text-2xl font-semibold text-center text-gray-800 mb-8">Wellory Inventory</h1>
       <form @submit.prevent="handleLogin" class="space-y-6">
         <div>
@@ -33,6 +33,7 @@
         >
           Sign in
         </button>
+        <p v-if="error" class="text-sm text-red-600 text-center mt-2">{{ error }}</p>
       </form>
     </div> 
   </div>
