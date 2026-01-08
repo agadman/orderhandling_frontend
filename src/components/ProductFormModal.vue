@@ -1,99 +1,72 @@
 <template>
-  <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-800">
-        {{ isEditing ? 'Redigera produkt' : 'Lägg till produkt' }}
-      </h2>
-
-      <button
-        v-if="isEditing"
-        type="button"
-        class="text-sm text-gray-600 hover:underline"
-        @click="cancelEdit"
-      >
-        Avbryt redigering
-      </button>
-    </div>
-
-    <form @submit.prevent="handleSubmit" class="grid gap-4 max-w-xl">
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Produktnamn</label>
-        <input
-          v-model="form.name"
-          required
-          class="w-full border border-gray-300 rounded-lg px-3 py-2"
-        />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-        <input
-          v-model="form.category"
-          required
-          class="w-full border border-gray-300 rounded-lg px-3 py-2"
-        />
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Antal i lager</label>
-          <input
-            v-model.number="form.inStock"
-            type="number"
-            min="0"
-            required
-            class="w-full border border-gray-300 rounded-lg px-3 py-2"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Pris</label>
-          <input
-            v-model.number="form.price"
-            type="number"
-            min="0"
-            step="0.01"
-            required
-            class="w-full border border-gray-300 rounded-lg px-3 py-2"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Beskrivning</label>
-        <textarea
-          v-model="form.description"
-          rows="3"
-          class="w-full border border-gray-300 rounded-lg px-3 py-2"
-        ></textarea>
-      </div>
-
-      <div class="flex gap-3">
-        <button
-          type="submit"
-          class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
-          :disabled="saving"
-        >
-          {{ saving ? 'Sparar...' : (isEditing ? 'Spara ändringar' : 'Lägg till') }}
-        </button>
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+    @click.self="cancelEdit"
+  >
+    <section class="w-full max-w-2xl rounded-xl bg-white shadow-lg border border-gray-200 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-gray-800">
+          {{ isEditing ? 'Edit product' : 'Add product' }}
+        </h2>
 
         <button
           type="button"
-          class="px-4 py-2 rounded-lg text-sm font-medium border border-gray-300"
+          class="text-sm text-gray-600 hover:underline"
           @click="cancelEdit"
-          :disabled="saving"
         >
-          Avbryt
+          Close
         </button>
       </div>
 
-      <p v-if="errorMsg" class="text-sm text-red-600">{{ errorMsg }}</p>
-    </form>
-  </section>
+      <form @submit.prevent="handleSubmit" class="grid gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Product name</label>
+          <input v-model="form.name" required class="w-full border border-gray-300 rounded-lg px-3 py-2" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <input v-model="form.category" required class="w-full border border-gray-300 rounded-lg px-3 py-2" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">In stock</label>
+            <input v-model.number="form.inStock" type="number" min="0" required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Price</label>
+            <input v-model.number="form.price" type="number" min="0" step="0.01" required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <textarea v-model="form.description" rows="3"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2"></textarea>
+        </div>
+
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
+            :disabled="saving"
+          >
+            {{ saving ? 'Saving...' : (isEditing ? 'Save changes' : 'Add') }}
+          </button>
+        </div>
+
+        <p v-if="errorMsg" class="text-sm text-red-600">{{ errorMsg }}</p>
+      </form>
+    </section>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const emit = defineEmits(['saved', 'close'])
 
@@ -108,14 +81,12 @@ const emptyForm = () => ({
 const form = ref(emptyForm())
 const isEditing = ref(false)
 const editingId = ref(null)
-
 const saving = ref(false)
 const errorMsg = ref('')
 
 const startEdit = (product) => {
   isEditing.value = true
   editingId.value = product._id
-
   form.value = {
     name: product.name ?? '',
     category: product.category ?? '',
@@ -125,19 +96,16 @@ const startEdit = (product) => {
   }
 }
 
-const cancelEdit = () => {
-  isEditing.value = false
-  editingId.value = null
-  form.value = emptyForm()
-  errorMsg.value = ''
-  emit('close')
-}
-
 const resetForm = () => {
   isEditing.value = false
   editingId.value = null
   form.value = emptyForm()
   errorMsg.value = ''
+}
+
+const cancelEdit = () => {
+  resetForm()
+  emit('close')
 }
 
 const handleSubmit = async () => {
@@ -168,20 +136,25 @@ const handleSubmit = async () => {
 
     if (!res.ok) {
       const text = await res.text()
-      errorMsg.value = `Fel (${res.status}): ${text}`
-      saving.value = false
+      errorMsg.value = `Error (${res.status}): ${text}`
       return
     }
 
-    cancelEdit()
     emit('saved')
+    cancelEdit()
   } catch (err) {
     console.log(err)
-    errorMsg.value = 'Nätverksfel – kunde inte spara.'
+    errorMsg.value = 'Network error - could not save.'
   } finally {
     saving.value = false
   }
 }
 
-defineExpose({ startEdit, cancelEdit, resetForm })
+const onKey = (e) => {
+  if (e.key === 'Escape') cancelEdit()
+}
+onMounted(() => window.addEventListener('keydown', onKey))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
+
+defineExpose({ startEdit, resetForm, cancelEdit })
 </script>

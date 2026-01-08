@@ -1,14 +1,14 @@
 <template>
     <div class="flex items-center justify-between px-6 pt-4 pb-10">
       <h1 class="text-xl font-semibold text-gray-800">
-        Produkter
+        Products
       </h1>
 
       <button
         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
         @click="openCreate()"
       >
-        + Lägg till produkt
+        + Add product
       </button>  
     </div>
     <ProductFormModal
@@ -22,11 +22,11 @@
     <table class="w-full text-sm">
       <thead class="bg-gray-50 text-gray-600">
         <tr class="border-b border-gray-200">
-          <th class="text-left font-medium px-6 py-3">Namn</th>
-          <th class="text-left font-medium px-6 py-3">Kategori</th>
-          <th class="text-left font-medium px-6 py-3">Pris</th>
-          <th class="text-left font-medium px-6 py-3">Lagerstatus</th>
-          <th class="text-right font-medium px-6 py-3">Åtgärder</th>
+          <th class="text-left font-medium px-6 py-3">Name</th>
+          <th class="text-left font-medium px-6 py-3">Category</th>
+          <th class="text-left font-medium px-6 py-3">Price</th>
+          <th class="text-left font-medium px-6 py-3">In stock</th>
+          <th class="text-right font-medium px-6 py-3">Actions</th>
         </tr>
       </thead>
 
@@ -45,7 +45,7 @@
       v-if="!products.length"
       class="px-6 py-6 text-sm text-gray-500"
     >
-      Listan är tom.
+      List is empty.
     </div>
 
   </section>

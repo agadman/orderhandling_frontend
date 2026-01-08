@@ -7,7 +7,7 @@
       {{ product.category }}
     </td>
     <td class="px-6 py-4 text-gray-600">
-      {{ product.price }} kr
+      ${{ product.price }}
     </td>
     <td class="px-6 py-4">
       <span
@@ -18,7 +18,7 @@
             : 'bg-red-100 text-red-700'
         ]"
       >
-        {{ product.inStock }} st
+        {{ product.inStock }}
       </span>
     </td>
     <td class="px-6 py-4 text-right space-x-3">
@@ -26,13 +26,13 @@
         class="text-blue-600 hover:underline text-sm"
         @click="$emit('edit-product', product)"
       >
-        Redigera
+        Edit
       </button>
       <button
         class="text-red-600 hover:underline text-sm"
         @click="$emit('delete-product', product._id)"
       >
-        Ta bort
+        Delete
       </button>
     </td>
   </tr>
