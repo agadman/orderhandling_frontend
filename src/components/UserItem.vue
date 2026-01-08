@@ -25,9 +25,8 @@
       {{ formatDate(user.createdAt) }}
     </td>
 
-    <td class="px-8 py-4 text-right space-x-3">
+    <td v-if="isAdmin" class="px-8 py-4 text-right space-x-3">
       <button
-        v-if="isAdmin"
         class="text-red-600 hover:underline text-sm"
         @click="$emit('delete-user', user._id || user.id)"
       >

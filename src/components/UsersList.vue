@@ -27,7 +27,7 @@
           <th class="text-left font-medium px-6 py-3">Email</th>
           <th class="text-left font-medium px-6 py-3">Role</th>
           <th class="text-left font-medium px-6 py-3">Created</th>
-          <th class="text-right font-medium px-6 py-3">Actions</th>
+          <th v-if="currentUser?.role === 'admin'" class="text-right font-medium px-6 py-3">Actions</th>
         </tr>
       </thead>
 
