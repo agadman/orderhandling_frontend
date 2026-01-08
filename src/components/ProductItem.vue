@@ -11,10 +11,10 @@
         {{ product.description }}
       </span>
     </td>
-    <td class="px-6 py-4 text-gray-600">
+    <td class="px-6 py-4 text-gray-600 text-center">
       ${{ product.price }}
     </td>
-    <td class="px-6 py-4">
+    <td class="px-6 py-4 text-center">
       <span
         :class="[
           'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium',
