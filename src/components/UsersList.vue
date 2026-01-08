@@ -9,7 +9,7 @@
       @click="showForm = true"
       class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
     >
-      + Lägg till user
+      + Add new user
     </button>
   </div>
 
@@ -23,11 +23,11 @@
     <table class="w-full text-sm">
       <thead class="bg-gray-50 text-gray-600">
         <tr class="border-b border-gray-200">
-          <th class="text-left font-medium px-6 py-3">Användarnamn</th>
+          <th class="text-left font-medium px-6 py-3">Username</th>
           <th class="text-left font-medium px-6 py-3">Email</th>
-          <th class="text-left font-medium px-6 py-3">Roll</th>
-          <th class="text-left font-medium px-6 py-3">Skapad</th>
-          <th class="text-right font-medium px-6 py-3">Åtgärder</th>
+          <th class="text-left font-medium px-6 py-3">Role</th>
+          <th class="text-left font-medium px-6 py-3">Created</th>
+          <th class="text-right font-medium px-6 py-3">Actions</th>
         </tr>
       </thead>
 
@@ -43,7 +43,7 @@
     </table>
 
     <div v-if="!users.length" class="px-6 py-6 text-sm text-gray-500">
-      Listan är tom.
+      List is empty.
     </div>
   </section>
 </template>

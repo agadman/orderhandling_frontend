@@ -31,7 +31,7 @@
         class="text-red-600 hover:underline text-sm"
         @click="$emit('delete-user', user._id || user.id)"
       >
-        Ta bort
+        Delete
       </button>
     </td>
   </tr>

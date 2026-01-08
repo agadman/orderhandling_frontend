@@ -8,13 +8,11 @@
         <h2 class="text-lg font-semibold text-gray-800">
           {{ isEditing ? 'Edit product' : 'Add product' }}
         </h2>
-
         <button
-          type="button"
-          class="text-sm text-gray-600 hover:underline"
-          @click="cancelEdit"
+          class="text-gray-400 hover:text-gray-600"
+          @click="$emit('close')"
         >
-          Close
+          ✕
         </button>
       </div>
 
