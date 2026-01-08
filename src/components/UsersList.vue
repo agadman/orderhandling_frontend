@@ -5,11 +5,19 @@
     </h1>
 
     <button
+      v-if="currentUser?.role === 'admin'"
+      @click="showForm = true"
       class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
     >
       + Lägg till user
     </button>
   </div>
+
+  <UserFormModal
+    v-if="showForm"
+    @created="getUsers"
+    @close="showForm = false"
+  />
 
   <section class="bg-white rounded-xl shadow-sm border-gray-200 overflow-hidden">
     <table class="w-full text-sm">
@@ -28,6 +36,7 @@
           v-for="user in users"
           :key="user._id || user.id"
           :user="user"
+          :isAdmin="currentUser?.role === 'admin'"
           @delete-user="deleteUser"
         />
       </tbody>
@@ -42,11 +51,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import UserItem from './UserItem.vue'
+import UserFormModal from './UserFormModal.vue' 
 
 const users = ref([])
+const showForm = ref(false) 
 
 onMounted(() => {
   getUsers()
+  getCurrentUser()
 })
 
 const getUsers = async () => {
@@ -78,6 +90,23 @@ const deleteUser = async (id) => {
     else console.log('Delete failed:', res.status)
   } catch (error) {
     console.log('There was an error:', error)
+  }
+}
+
+const currentUser = ref(null)
+
+const getCurrentUser = async () => {
+  try {
+    const res = await fetch('http://localhost:3000/auth/me', {
+      credentials: 'include'
+    })
+
+    if (!res.ok) return
+
+    const data = await res.json()
+    currentUser.value = data.user
+  } catch (error) {
+    console.log('Auth error:', error)
   }
 }
 </script>

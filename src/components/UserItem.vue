@@ -25,12 +25,9 @@
       {{ formatDate(user.createdAt) }}
     </td>
 
-    <td class="px-6 py-4 text-right space-x-3">
-      <button class="text-blue-600 hover:underline text-sm">
-        Redigera
-      </button>
-
+    <td class="px-8 py-4 text-right space-x-3">
       <button
+        v-if="isAdmin"
         class="text-red-600 hover:underline text-sm"
         @click="$emit('delete-user', user._id || user.id)"
       >
@@ -42,7 +39,8 @@
 
 <script setup>
 defineProps({
-  user: Object
+  user: Object,
+  isAdmin: Boolean
 })
 
 defineEmits(['delete-user'])

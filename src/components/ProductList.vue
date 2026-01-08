@@ -6,10 +6,17 @@
 
       <button
         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
+        @click="openCreate()"
       >
         + Lägg till produkt
-      </button>
+      </button>  
     </div>
+    <ProductFormModal
+      v-if="showForm"
+      ref="productFormRef"
+      @saved="handleSaved"
+      @close="showForm = false"
+    />
 
   <section class="bg-white rounded-xl shadow-sm border-gray-200 overflow-hidden">
     <table class="w-full text-sm">
@@ -29,6 +36,7 @@
           :key="product._id"
           :product="product"
           @delete-product="deleteProduct"
+          @edit-product="openEdit"
         />
       </tbody>
     </table>
@@ -44,14 +52,34 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, nextTick } from 'vue';
   import ProductItem from './ProductItem.vue';
+  import ProductFormModal from './ProductFormModal.vue'
 
   const products = ref([]);
+  const showForm = ref(false)
+  const productFormRef = ref(null)
 
   onMounted(() => {
     getProducts();
   });
+
+  const openCreate = async () => {
+  showForm.value = true
+  await nextTick()
+  productFormRef.value?.resetForm?.() 
+}
+
+const openEdit = async (product) => {
+  showForm.value = true
+  await nextTick()
+  productFormRef.value?.startEdit?.(product)
+}
+
+const handleSaved = () => {
+  showForm.value = false
+  getProducts()
+}
 
   const getProducts = async () => {
     try {

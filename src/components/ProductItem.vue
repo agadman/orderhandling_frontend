@@ -22,7 +22,10 @@
       </span>
     </td>
     <td class="px-6 py-4 text-right space-x-3">
-      <button class="text-blue-600 hover:underline text-sm">
+      <button 
+        class="text-blue-600 hover:underline text-sm"
+        @click="$emit('edit-product', product)"
+      >
         Redigera
       </button>
       <button
@@ -40,5 +43,5 @@ defineProps({
   product: Object
 })
 
-const emits = defineEmits(['delete-product'])
+const emits = defineEmits(['delete-product', 'edit-product'])
 </script>
