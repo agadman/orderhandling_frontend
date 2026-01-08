@@ -1,18 +1,29 @@
 <template>
-  <header class="bg-white border-b border-gray-200 px-6 py-4">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center">
-        <img
-          src="/logo.png"
-          alt="Hälsolager logo"
-          class="h-16 w-auto -mr-6"
-        />
-        <h1 class="text-xl font-semibold text-gray-900">
-          Wellory Inventory
-        </h1>
+  <header class="bg-white border-b border-gray-200 px-4 md:px-6 py-3 md:py-4">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <img
+            src="/logo.png"
+            alt="Wellory logo"
+            class="h-10 md:h-16 w-auto"
+          />
+          <h1 class="ml-2 text-lg md:text-xl font-semibold text-gray-900">
+            Wellory Inventory
+          </h1>
+        </div>
+
+        <button
+          @click="handleLogout"
+          class="md:hidden p-2 hover:bg-gray-100 rounded-lg"
+          title="Logga ut"
+        >
+          <LogOut class="w-5 h-5 text-gray-600" />
+        </button>
       </div>
 
-      <div class="flex-1 max-w-xl mx-8 relative">
+      <div class="relative w-full md:flex-1 md:max-w-xl">
         <input
           type="text"
           placeholder="Search"
@@ -22,10 +33,10 @@
         <Search class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-4">
         <div class="text-right leading-tight">
-          <p class="text-xs text-gray-800">Logged in as:</p>
-          <p class="text-xs text-gray-500">
+          <p class="text-xs text-gray-500">Logged in as</p>
+          <p class="text-sm font-medium text-gray-800">
             {{ user?.username }}
           </p>
         </div>
@@ -38,6 +49,7 @@
           <LogOut class="w-6 h-6 text-gray-600" />
         </button>
       </div>
+
     </div>
   </header>
 </template>
