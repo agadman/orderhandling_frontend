@@ -8,7 +8,7 @@
           class="h-16 w-auto -mr-6"
         />
         <h1 class="text-xl font-semibold text-gray-900">
-          Lagerhantering
+          Wellory Inventory
         </h1>
       </div>
 
@@ -24,7 +24,7 @@
 
       <div class="flex items-center gap-4">
         <div class="text-right leading-tight">
-          <p class="text-xs text-gray-800">Inloggad som:</p>
+          <p class="text-xs text-gray-800">Logged in as:</p>
           <p class="text-xs text-gray-500">
             {{ user?.username }}
           </p>

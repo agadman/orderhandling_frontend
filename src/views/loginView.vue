@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md">
-      <h1 class="text-2xl font-semibold text-center text-gray-800 mb-8">Login View</h1>
+      <h1 class="text-2xl font-semibold text-center text-gray-800 mb-8">Wellory Inventory</h1>
       <form @submit.prevent="handleLogin" class="space-y-6">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700 mb-2">

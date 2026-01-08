@@ -22,7 +22,7 @@ defineProps({
         ]"
       >
         <Package class="w-5 h-5" />
-        Produkter
+        Products
       </button>
       <button
         @click="$emit('change-view', 'users')"
@@ -34,7 +34,7 @@ defineProps({
         ]"
       >
         <Users class="w-5 h-5" />
-        Användare
+        Users
       </button>
     </nav>
   </aside>
