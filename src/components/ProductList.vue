@@ -24,9 +24,10 @@
         <tr class="border-b border-gray-200">
           <th class="text-left font-medium px-6 py-3">Name</th>
           <th class="text-left font-medium px-6 py-3">Category</th>
+          <th class="text-left font-medium px-6 py-3">Description</th>
           <th class="text-left font-medium px-6 py-3">Price</th>
           <th class="text-left font-medium px-6 py-3">In stock</th>
-          <th class="text-right font-medium px-6 py-3">Actions</th>
+          <th class="text-left font-medium px-6 py-3">Actions</th>
         </tr>
       </thead>
 

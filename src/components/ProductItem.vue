@@ -7,6 +7,11 @@
       {{ product.category }}
     </td>
     <td class="px-6 py-4 text-gray-600">
+      <span class="block max-w-xs truncate">
+        {{ product.description }}
+      </span>
+    </td>
+    <td class="px-6 py-4 text-gray-600">
       ${{ product.price }}
     </td>
     <td class="px-6 py-4">
