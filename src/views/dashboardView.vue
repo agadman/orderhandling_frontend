@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :user="currentUser" />
+    <Header :user="currentUser" @logged-out="onLoggedOut" />
     <div style="display: flex;">
       <Sidebar 
         :activeView="currentView"
@@ -24,7 +24,15 @@
             currentUser: null
             }
         },
-        async mounted() {
+
+         methods: {
+        onLoggedOut() {
+          this.currentUser = null
+          this.$router.push('/') 
+        }
+      },
+
+      async mounted() {
       try {
         const res = await fetch('http://localhost:3000/auth/me', {
           credentials: 'include'
