@@ -21,7 +21,7 @@
 
   <section class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
     <div class="overflow-x-auto">
-      <table class="min-w-[700px] w-full text-sm">
+      <table class="min-w-175 w-full text-sm">
         <thead class="bg-gray-50 text-gray-600">
           <tr class="border-b border-gray-200">
             <th class="text-left font-medium px-4 sm:px-6 py-3">Username</th>

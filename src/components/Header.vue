@@ -17,7 +17,7 @@
           <img
             src="/logo.png"
             alt="Wellory logo"
-            class="h-10 md:h-14 w-auto flex-shrink-0"
+            class="h-10 md:h-14 w-auto shrink-0"
           />
           <h1 class="text-lg md:text-xl font-semibold text-gray-900 truncate">
             Wellory Inventory
