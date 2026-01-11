@@ -80,6 +80,12 @@ const getUsers = async () => {
 }
 
 const deleteUser = async (id) => {
+  const confirmed = window.confirm(
+    'Are you sure you want to delete this user? This action cannot be undone.'
+  )
+
+  if (!confirmed) return
+  
   try {
     const res = await fetch(`http://localhost:3000/users/${id}`, {
       method: 'DELETE',
