@@ -1,38 +1,42 @@
-# orderhandling_frontend
+# Orderhandling Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Detta repository innehåller frontenddelen till projektet **Orderhandling**, utvecklat som en del av kursen *Fullstacksutveckling med ramverk* vid Mittuniversitetet.
 
-## Recommended IDE Setup
+Frontendapplikationen är byggd som en **Single Page Application (SPA)** med Vue och används för att konsumera backend-API:t i orderhandling_backend.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Recommended Browser Setup
+## Tekniker
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- **Vue** – JavaScript-ramverk för komponentbaserad utveckling
+- **Vue Router** – Navigering mellan vyer
+- **Tailwind CSS** – Styling av användargränssnitt
+- **Lucide** – Ikoner i gränssnittet
+- **Fetch API** – Kommunikation med backend
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Funktionalitet
 
-## Project Setup
+- Inloggning med cookie-baserad autentisering
+- Skyddad dashboard för inloggade användare
+- Hantering av produkter (skapa, visa, uppdatera, ta bort)
+- Användarhantering för administratörer
+- Responsivt användargränssnitt
 
-```sh
-npm install
-```
+**Notering:**  
+Ett sökfält finns i gränssnittet men sökfunktionen är inte implementerad i denna version.
 
-### Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
+## Installation och uppstart
 
-### Compile and Minify for Production
+1. Klona projektet  
+2. Installera beroenden: npm install
+3. Starta utvecklingsserver: npm run dev
 
-```sh
+Applikationen körs vanligtvis på:
+http://localhost:5173
+
+Backend måste vara igång för att frontend ska fungera korrekt.
+
+## Bygg för produktion
+
 npm run build
-```
